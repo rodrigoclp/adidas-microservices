@@ -16,12 +16,12 @@ This repository contains the main service called Subscription, and the accessory
 
 - Subscription is the main service. Mailing service is only a representation of real service to simulate the communication with the stream broker;
 - The api-gateway has a really simple implementation, only to represent the infrastructure proposed;
-- No Service/Domain layer on the Subscription service. Not enough business rules for data;
-- For this specific case, a reverse proxy with Nginx would be enough, but I assumed we already have an api-gateway structure at the company.
+- No Service/Domain layer on the Subscription service. Not enough business logic for that;
+- For this specific case, a reverse proxy with Nginx would be enough, but I assumed we already have api-gateway structure at the company.
 
 ### Todo
 
-- Improve everything... but mainly, add the gRPC for the inter-service communication including with the api-gateway;
+- Improve everything... but mainly, add the gRPC for the inter-service communication;
 - Add HTTPS and SSL, including in the stream broker communication.
 Unfortunately, not enough time for that.
 
@@ -33,11 +33,11 @@ Simple, clean, lightweight, and straightforward; Nice for microservices.
 
 **Mongo**
 
-For convenience (I'm used to using it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
+For convenience (I'm used to using it), but any other DB would fit in this case (SQL or noSQL). Cassandra, PostgreSQL...
 
 **Kafka**
 
-Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure. I assumed we already have a streaming platform at the company (saw it on the Adidas stack list);
+Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure, assuming we already have a streaming platform at the company (saw it on the Adidas stack list);
 
 ## Running it
 
@@ -49,7 +49,7 @@ Clone or download this repository into your machine:
 
 **Requirements**
 
-- docker/docker-compose
+- Docker/docker-compose
 
 **How to**
 
@@ -65,8 +65,8 @@ In the root folder, execute:
 
 **Requirements**
 
-- docker/docker-compose
-- NodeJS version 16+ (most likely works fine with 12+ / not checked)
+- Docker/docker-compose
+- NodeJS version 16+ (most likely works fine with 12+ / but not checked)
 
 **How to**
 
@@ -89,7 +89,6 @@ Available on the main service (subscriptions service). Run: `npm run test`
 
 Available only on Developing mode.
 
-- Run the Subscription service (locally, out of the docker);
 - From a web browser, enter: `http://localhost:4001/api/v1/doc`
 
 ## CI/CD pipeline proposal
