@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription-service
+  template:
+    metadata:
+      labels:
+        app: subscription-service
+    spec:
+      containers:
+      - name: subscription-service
+        image: rodrigoclp/subscription:latest
+        imagePullPolicy: Always
+        env:
+          - name: NODE_ENV
+            value: "staging"
+        env:
+          - name: DB_URL
+            value: "mongodb://db:27017/subscription"
+        env:
+          - name: DB_USER
+            value: "user-adidas"
+        env:
+          - name: DB_PASS
+            value: "pass-adidas"
+        env:
+          - name: STREAM_BROKERS
+            value: "kafka:29092"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 4000
+          periodSeconds: 3
+        resources:
+          requests:
+            cpu: 400m
+            memory: 1024Mi
+          limits:
+            cpu: 600m
+            memory: 1280Mi
+        ports:
+          - port: 4000
+            protocol: TCP
+            targetPort: 4000
