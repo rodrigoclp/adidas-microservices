@@ -53,6 +53,7 @@ Clone or download this repository into your machine:
 `docker-compose up`
 
 **Reaching the service**
+
 `http://localhost:4000/subscription/api/v1`
 
 ### Developing mode
