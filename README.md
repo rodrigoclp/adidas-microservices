@@ -4,7 +4,7 @@ Build and run a Subscription service in a microservices infrastructure.
 
 This repository contains the main service called Subscription, and the accessory services to represent the microservices structure.
 
-![alt text](https://github.com/rodrigoclp/adidas-microservices/blob/master/architecture.png?raw=true)
+![alt text](https://github.com/rodrigoclp/adidas-microservices/blob/master/architecture2.png?raw=true)
 
 ### Goal
 
