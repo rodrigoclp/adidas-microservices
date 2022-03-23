@@ -66,11 +66,11 @@ Clone or download this repository into your machine:
 
 - In the root folder, execute:
 `docker-compose -f docker-compose.dev.yml up`
-- Run the other services individually executing the following command in the root folder of each service:
+- Run the node services individually executing the following command in the root folder of each service:
 `npm run dev`
 
 **Reaching the service**
-`http://localhost:4000/api/v1`
+`http://localhost:4000/subscription/api/v1`
 
 ## API Doc (Swagger)
 
