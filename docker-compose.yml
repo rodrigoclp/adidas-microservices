@@ -1,0 +1,100 @@
+version: "3.9"
+services:
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+      - NODE_ENV=staging
+      - DOMAIN=*
+      - URL_SUBSCRIPTION_SERVICE=http://subscription:4000
+    networks:
+      - public
+      - private
+
+  subscription:
+    depends_on:
+      - db
+      - kafka
+    build:
+      context: ./subscription
+    environment:
+      - PORT=4000
+      - NODE_ENV=staging
+      - DB_URL=mongodb://db:27017/subscription
+      - DB_USER=user-adidas
+      - DB_PASS=pass-adidas
+      - STREAM_BROKERS=kafka:29092
+    networks:
+      - private
+
+  mailing:
+    depends_on:
+      - kafka
+    build:
+      context: ./mailing
+    environment:
+      - PORT=4000
+      - NODE_ENV=staging
+      - STREAM_BROKERS=kafka:29092
+    networks:
+      - private
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+    networks:
+      - private
+
+  kafka:
+    image: confluentinc/cp-kafka
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    networks:
+      - private
+
+  kafka-init:
+    image: confluentinc/cp-kafka
+    depends_on:
+      - kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      kafka-topics --bootstrap-server kafka:29092 --list
+      echo -e 'Creating kafka topic: '
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic subscription --replication-factor 1 --partitions 1
+      echo -e 'Kafka topic created: '
+      kafka-topics --bootstrap-server kafka:29092 --list
+      "
+    networks:
+     - private
+
+  db:
+    image: mongo
+    volumes:
+      - ./_data/mongodb:/data/db
+      - ./_docker/mongo-init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_PORT=27017
+      - MONGO_INITDB_DATABASE=subscription
+      - MONGO_INITDB_ROOT_USERNAME=user-admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass-admin
+      - DATABASE_USERNAME=user-adidas
+      - DATABASE_PASSWORD=pass-adidas
+    networks:
+      - private
+
+networks:
+  public:
+  private:

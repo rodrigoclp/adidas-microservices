@@ -1,0 +1,188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Adidas Challenger - Subscription microservice",
+    "description": "Very simple example of a microservice",
+    "contact": {
+      "name": "Rodrigo Pádua",
+      "email": "rodrigoclp@gmail.com"
+    }
+  },
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Returns all subscriptions",
+        "operationId": "readAll",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/Subscription"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new subscription",
+        "operationId": "create",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the subscription id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "409": {
+            "description": "Subscription already registered"
+          },
+          "400": {
+            "description": "Validation error. Wrong data input"
+          }
+        }
+      }
+    },
+    "/{email}/{newsletterId}": {
+      "get": {
+        "description": "Returns data of one subscription",
+        "operationId": "read",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "newsletterId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Subscription"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes one subscription",
+        "operationId": "cancel",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "newsletterId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscription deleted"
+          },
+          "404": {
+            "description": "Subscription not found"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Ping the service",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Subscription": {
+      "type": "object",
+      "required": [
+        "email",
+        "newsletterId",
+        "dateOfBirth",
+        "consented"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "newsletterId": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "consented": {
+          "type": "boolean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
