@@ -36,7 +36,7 @@ For convenience (I use to use it), but any other DB would fit in this case (SQL 
 **Kafka**
 Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure. I assumed we already have a streaming platform at the company (saw it on the Adidas stack list);
 
-## Run it
+## Running it
 
 Clone or download this repository into your machine:
 `git clone git@github.com:rodrigoclp/adidas-node-microservices.git`
