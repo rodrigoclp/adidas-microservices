@@ -33,7 +33,7 @@ Simple, clean, lightweight, and straightforward; Nice for microservices.
 
 **Mongo**
 
-For convenience (I use to use it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
+For convenience (I'm used to using it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
 
 **Kafka**
 
