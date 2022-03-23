@@ -82,6 +82,9 @@ Run the node services individually executing the following command in the root f
 
 `http://localhost:4000/subscription/api/v1`
 
+## Unit Tests
+Available on the main service (subscriptions service). Run: `npm run test`
+
 ## API Doc (Swagger)
 
 Available only on Developing mode.
