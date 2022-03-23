@@ -4,7 +4,7 @@ Build and run a Subscription service in a microservices infrastructure.
 
 This repository contains the main service called Subscription, and the accessory services to represent the microservices structure.
 
-![alt text](https://github.com/rodrigoclp/adidas-microservices/blob/master/architecture.png?raw=true)
+![alt text](https://github.com/rodrigoclp/adidas-microservices/blob/master/architecture2.png?raw=true)
 
 ### Goal
 
@@ -28,17 +28,21 @@ Unfortunately, not enough time for that.
 ## Stack
 
 **Express**
+
 Simple, clean, lightweight, and straightforward; Nice for microservices.
 
 **Mongo**
-For convenience (I use to use it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
+
+For convenience (I'm used to using it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
 
 **Kafka**
+
 Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure. I assumed we already have a streaming platform at the company (saw it on the Adidas stack list);
 
-## Run it
+## Running it
 
 Clone or download this repository into your machine:
+
 `git clone git@github.com:rodrigoclp/adidas-node-microservices.git`
 
 ### Staging mode
@@ -49,10 +53,12 @@ Clone or download this repository into your machine:
 
 **How to**
 
-- In the root folder, execute:
+In the root folder, execute:
+
 `docker-compose up`
 
 **Reaching the service**
+
 `http://localhost:4000/subscription/api/v1`
 
 ### Developing mode
@@ -64,25 +70,32 @@ Clone or download this repository into your machine:
 
 **How to**
 
-- In the root folder, execute:
+In the root folder, execute:
+
 `docker-compose -f docker-compose.dev.yml up`
-- Run the other services individually executing the following command in the root folder of each service:
+
+Run the node services individually executing the following command in the root folder of each service:
+
 `npm run dev`
 
 **Reaching the service**
-`http://localhost:4000/api/v1`
+
+`http://localhost:4000/subscription/api/v1`
+
+## Unit Tests
+Available on the main service (subscriptions service). Run: `npm run test`
 
 ## API Doc (Swagger)
 
 Available only on Developing mode.
 
 - Run the Subscription service (locally, out of the docker);
-- From a web browser, enter:
-`http://localhost:4001/api/v1/doc`
+- From a web browser, enter: `http://localhost:4001/api/v1/doc`
 
 ## CI/CD pipeline proposal
 
 **Ticket branch**
+
 Step 1
 
 - Run all unit tests
@@ -96,6 +109,7 @@ Step 3
 - Push the docker image
 
 **Pull Request of the branch**
+
 Step 1 (in parallel)
 
 - Run all unit tests
