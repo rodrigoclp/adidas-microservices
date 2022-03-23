@@ -42,6 +42,7 @@ Market choice and best stream platform, but any other solution would fit this ca
 ## Running it
 
 Clone or download this repository into your machine:
+
 `git clone git@github.com:rodrigoclp/adidas-node-microservices.git`
 
 ### Staging mode
@@ -52,8 +53,8 @@ Clone or download this repository into your machine:
 
 **How to**
 
-- In the root folder, execute:
-- 
+In the root folder, execute:
+
 `docker-compose up`
 
 **Reaching the service**
@@ -69,10 +70,11 @@ Clone or download this repository into your machine:
 
 **How to**
 
-- In the root folder, execute:
+In the root folder, execute:
 
 `docker-compose -f docker-compose.dev.yml up`
-- Run the node services individually executing the following command in the root folder of each service:
+
+Run the node services individually executing the following command in the root folder of each service:
 
 `npm run dev`
 
@@ -85,8 +87,7 @@ Clone or download this repository into your machine:
 Available only on Developing mode.
 
 - Run the Subscription service (locally, out of the docker);
-- From a web browser, enter:
-`http://localhost:4001/api/v1/doc`
+- From a web browser, enter: `http://localhost:4001/api/v1/doc`
 
 ## CI/CD pipeline proposal
 
