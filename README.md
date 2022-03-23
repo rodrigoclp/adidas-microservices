@@ -28,12 +28,15 @@ Unfortunately, not enough time for that.
 ## Stack
 
 **Express**
+
 Simple, clean, lightweight, and straightforward; Nice for microservices.
 
 **Mongo**
+
 For convenience (I use to use it), but any other DB would fit in this case (SQL or noSQL). With more time, I would add Cassandra (saw it on the Adidas stack list);
 
 **Kafka**
+
 Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure. I assumed we already have a streaming platform at the company (saw it on the Adidas stack list);
 
 ## Running it
@@ -50,6 +53,7 @@ Clone or download this repository into your machine:
 **How to**
 
 - In the root folder, execute:
+- 
 `docker-compose up`
 
 **Reaching the service**
@@ -66,11 +70,14 @@ Clone or download this repository into your machine:
 **How to**
 
 - In the root folder, execute:
+
 `docker-compose -f docker-compose.dev.yml up`
 - Run the node services individually executing the following command in the root folder of each service:
+
 `npm run dev`
 
 **Reaching the service**
+
 `http://localhost:4000/subscription/api/v1`
 
 ## API Doc (Swagger)
@@ -84,6 +91,7 @@ Available only on Developing mode.
 ## CI/CD pipeline proposal
 
 **Ticket branch**
+
 Step 1
 
 - Run all unit tests
@@ -97,6 +105,7 @@ Step 3
 - Push the docker image
 
 **Pull Request of the branch**
+
 Step 1 (in parallel)
 
 - Run all unit tests
