@@ -1,10 +1,10 @@
-# Adidas Challenge - Node/Microservices
+# Challenge - Node/Microservices
 
 Build and run a Subscription service in a microservices infrastructure.
 
 This repository contains the main service called Subscription, and the accessory services to represent the microservices structure.
 
-![alt text](https://github.com/rodrigoclp/adidas-microservices/blob/master/architecture2.png?raw=true)
+![alt text](https://github.com/rodrigoclp/challenge-microservices/blob/master/architecture2.png?raw=true)
 
 ### Goal
 
@@ -37,13 +37,13 @@ For convenience (I'm used to using it), but any other DB would fit in this case 
 
 **Kafka**
 
-Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure, assuming we already have a streaming platform at the company (saw it on the Adidas stack list);
+Market choice and best stream platform, but any other solution would fit this case. For this challenge, I added a single node just to represent the infrastructure, assuming we already have a streaming platform at the company (saw it on the company stack list);
 
 ## Running it
 
 Clone or download this repository into your machine:
 
-`git clone git@github.com:rodrigoclp/adidas-node-microservices.git`
+`git clone git@github.com:rodrigoclp/challenge-microservices.git`
 
 ### Staging mode
 
@@ -71,6 +71,7 @@ In the root folder, execute:
 **How to**
 
 In the root folder, execute:
+
 
 `docker-compose -f docker-compose.dev.yml up`
 
